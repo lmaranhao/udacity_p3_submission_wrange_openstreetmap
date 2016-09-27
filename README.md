@@ -28,7 +28,7 @@ We will check the street prefixes of any `way` tag that has a `tag` with its `k`
 
 Below you can see the major issues I found at the code. 
 I printed all street prefixes ofund ordered by count.
-You can check the full code in the P3_Wrangle_OpenStreetMap_Data_Notebook.py file in this github repository.
+You can check the full code in the P3_Wrangle_OpenStreetMap_Data_Notebook.py or in the P3_Wrangle_OpenStreetMap_Data_Notebook.ipynb files in this github repository.
 ```
 # print the street_types_counts dictionary, only sorted by count
 sorted_dict = sorted(street_types_counts.items(), key=lambda x:x[1], reverse = True)
