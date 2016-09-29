@@ -83,7 +83,7 @@ pprint.pprint(dict(street_types_ways))
 # I'll print only the ones that doesn't match this format so I can decide what to do to fix them later
 import re
 postal_code_pattern = '\d{5}-\d{3}'
-postal_code_pattern_compiled = re.compile(pattern)
+postal_code_pattern_compiled = re.compile(postal_code_pattern)
 
 def check_postal_codes():
     for _, element in ET.iterparse(OSM_FILE):
