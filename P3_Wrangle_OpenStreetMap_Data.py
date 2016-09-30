@@ -76,10 +76,10 @@ def check_street_types_way_id():
     return street_types_ways
 
 street_types_ways = check_street_types_way_id()
-pprint.pprint(dict(street_types_ways))
+# print the first 5 entries
+pprint.pprint(street_types_ways.items()[0:5])
 
-# postal codes in Brazil are in the format 12345-123
-# below I'll check if the postal_codes fields in the streets are in this format
+# postal codes in Brazil are in the format 12345-123. below I'll check if the streets' postal_code are in this format
 # I'll print only the ones that doesn't match this format so I can decide what to do to fix them later
 import re
 postal_code_pattern = '\d{5}-\d{3}'
@@ -207,7 +207,6 @@ def process_element(element):
                 way["postal_code"] = tag.get("v")
 
         if is_street:
-#             pprint.pprint(way["name"])
             if way["name"] is not None:
                 way["name"] = replace_from_map(way["name"], prefix_replacement_map)
             if "postal_code" in way:
@@ -218,7 +217,6 @@ def process_element(element):
             way["user"] = way_element.get("user")
             way["timestamp"] = way_element.get("timestamp")
             way["version"] = int(way_element.get("version"))
-#             pprint.pprint(way["name"])
             return way 
         
     return None
@@ -239,7 +237,9 @@ def process_file(file_in, pretty = False):
                     fo.write(json.dumps(el) + "\n")
     return data
 
-process_file(OSM_FILE, True)
+json_file = process_file(OSM_FILE, True)
+# printing only the first element of the generated file
+json_file[0]
 
 # The json file generated above needs to be imported into my local mongodb which is already running. I'll name the database **p3_leonardo**, the collection **osm** and run the command below (if you want to run it in your local machine just change the local path to the PE_Coast.osm_processed.json file):
 #
